@@ -4,7 +4,7 @@ Front-end para o projeto DriveWatch.
 
 Utiliza Vue.js e Bootstrap 5.
 
-Para rodar use a dist (Em Releases >) ou rode com 'npm run dev' para modo desenvolvimento (requer Node e npm).
+Para rodar use a dist de produção (Em Releases >) ou a de desenvolvimento com 'npm run dev' seguindo as instruções abaixo (requer Node e npm).
 
 # How to Build
 
