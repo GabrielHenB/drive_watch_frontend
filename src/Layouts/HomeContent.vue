@@ -53,14 +53,18 @@ function formatar_data(datestring){
     </div>
     <div class="row justify-content-between" v-if="dados.length > 0">
             <div class="col-12 col-md-6 col-lg text-center my-1" v-for="(item,index) of dados">
-                <template v-if="index < 3">
-                    <img :src="item.image" alt="" style="width: 400px">
-                    <p class="my-0 py-0" style="font-size: medium;"><span>Classe</span> {{ item.class }}</p>
+                <div class="border rounded py-1" v-if="index < 3">
+                    <div class="icontainer" style="object-fit: contain;">
+                      <img :src="item.image" alt="" style="width: 400px;  max-width: 100%;">
+                    </div>
+                    <p class="my-0 py-0" style="font-size: medium;"><span class="negrito">Classe: </span> {{ item.class === "SLEEPING" ? "Dormindo" : "Acordado" }}</p>
                     <p class="my-0 py-0" style="font-size: small;"><span class="negrito">Data:</span> {{ formatar_data(item.occurenceDate) }}</p>
-                </template>
+                </div>
             </div>
             <div class="col-12 col-md-6 col-lg text-center my-1 d-flex flex-column justify-content-center align-items-center">
-                <RouterLink :to="{name: 'events'}" class="p-0 fs-4 text-decoration-none">Ver<br>Mais</RouterLink>
+                <RouterLink :to="{name: 'events'}" class="p-0 fs-4 text-decoration-none">
+                  <i class="bi bi-plus-lg fs-1"></i>
+                </RouterLink>
             </div>
         </div>
         <div class="row" v-else>

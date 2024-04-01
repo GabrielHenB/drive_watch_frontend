@@ -4,6 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 const base_path = "/";
 const PAGE_PATH = "../Pages/";
 
+const NOT_FOUND_PATH = PAGE_PATH + "404.vue";
+
 import HomeView from "../Pages/HomeView.vue";
 
 const router = createRouter({
@@ -52,9 +54,9 @@ const router = createRouter({
       component: () => import(PAGE_PATH + 'UpdateView.vue')
     },
     {
-      path: '/:pathMatch(.*)*', // Depois fazer em server side se for o caso
+      path: base_path + ':pathMatch(.*)*',
       name: 'notfound',
-      component: () => import(PAGE_PATH + '404.vue')
+      component: () => import(NOT_FOUND_PATH)
     }
   ]
 })

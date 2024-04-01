@@ -58,4 +58,9 @@ a:hover{
     transform: scale(1.08);
     transition: all 0.5s;
 }
+@media (max-width: 768px) { 
+    .home-menu-item:hover{
+        transform: scale(1);
+    }
+}
 </style>

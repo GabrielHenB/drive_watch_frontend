@@ -7,7 +7,9 @@ import HeaderLogo from '@/Components/HeaderLogo.vue';
     <header>
         <div class="d-flex align-items-center justify-content-around justify-content-md-between headerbg">
             <div class="logo">
-                <HeaderLogo></HeaderLogo>
+                <RouterLink :to="{name: 'index'}">
+                    <HeaderLogo></HeaderLogo>
+                </RouterLink>
             </div>
             <nav class="d-none d-md-flex gap-3 mx-2">
                 <RouterLink class="headeritem negrito" :to="{name: 'index'}">Dashboard</RouterLink>

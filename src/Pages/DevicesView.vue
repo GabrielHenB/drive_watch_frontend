@@ -60,7 +60,7 @@ function closeMsg(){
         <article v-for="(item, index) of dados" class="col-12 col-md-6">
           <div class="d-flex justify-content-center align-items-center gap-1 my-3">
             <div class="foto">
-              <img src="drivewatch.png" width="260" />
+              <img src="drivewatch.png" width="260" style="max-width: 100%;" />
             </div>
             <div class="m-0 p-1 d-flex flex-column align-items-center">
               <h2 class="text-center"><strong>Dispositivo:</strong> <span>{{ item.id_device }}</span></h2>

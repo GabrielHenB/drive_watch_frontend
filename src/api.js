@@ -1,11 +1,11 @@
 //export const API_BASE = "http://localhost:8080/api/v1/"
 export const API_BASE = "https://6609d2960f324a9a2883d1bb.mockapi.io/api/v1/"
+
 // ENDPOINTS GET
 const register = "register";
 const eventos = "event";
 const devices = "device";
 const company = "company";
-//const tem_acesso = "api/temacesso";
 //const urli = "api/i/";
 
 // ENDPOINTS POST
