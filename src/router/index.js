@@ -4,8 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 const base_path = "/";
 const PAGE_PATH = "../Pages/";
 
-const NOT_FOUND_PATH = PAGE_PATH + "404.vue";
-
 import HomeView from "../Pages/HomeView.vue";
 
 const router = createRouter({
@@ -26,37 +24,37 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(PAGE_PATH + 'CompanyView.vue')
+      component: () => import("../Pages/CompanyView.vue")
     },
     {
         path: base_path + 'devices',
         name:'devices',
-        component: () => import(PAGE_PATH + 'DevicesView.vue')
+        component: () => import("../Pages/DevicesView.vue")
     },
     {
       path: base_path + 'events',
       name:'events',
-      component: () => import(PAGE_PATH + 'EventsView.vue')
+      component: () => import("../Pages/EventsView.vue")
     },
     {
       path: base_path + "account",
       name: 'account',
-      component: () => import(PAGE_PATH + 'ConfigView.vue')
+      component: () => import("../Pages/ConfigView.vue")
     },
     {
       path: base_path + "help",
       name: "help",
-      component: () => import(PAGE_PATH + 'ConfigView.vue')
+      component: () => import("../Pages/ConfigView.vue")
     },
     {
       path: base_path + 'devices/update/:id',
       name: 'device_update',
-      component: () => import(PAGE_PATH + 'UpdateView.vue')
+      component: () => import("../Pages/UpdateView.vue")
     },
     {
       path: base_path + ':pathMatch(.*)*',
       name: 'notfound',
-      component: () => import(NOT_FOUND_PATH)
+      component: () => import("../Pages/404.vue")
     }
   ]
 })
