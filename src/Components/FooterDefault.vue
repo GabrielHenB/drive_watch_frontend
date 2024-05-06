@@ -46,6 +46,7 @@ i:hover{
     color: var(--cor-branca);
     width: 100%;
     bottom: 0;
+    padding-bottom: 100px; /* to stop free-tinyhost thingy from hiding the footer */
 }
 .smallspace{
     display: none;

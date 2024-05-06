@@ -63,7 +63,7 @@ function formatar_data(datestring){
             </div>
             <div class="col-12 col-md-6 col-lg text-center my-1 d-flex flex-column justify-content-center align-items-center">
                 <RouterLink :to="{name: 'events'}" class="p-0 fs-4 text-decoration-none">
-                  <i class="bi bi-plus-lg fs-1"></i>
+                  <i class="bi bi-three-dots fs-1"></i>
                 </RouterLink>
             </div>
         </div>
