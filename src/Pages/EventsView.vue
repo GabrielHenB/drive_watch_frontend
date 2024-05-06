@@ -14,7 +14,7 @@ onMounted(async () => {
   loading.value = true;
   try {
     const res = await fetchData(URL_REGISTER);
-    console.log(res);
+    //console.log(res);
     dados.value = res;
     loading.value = false;
   } catch (error) {

@@ -1,10 +1,10 @@
 <script setup>
-import {} from '@/api.js';
-import {onMounted, ref } from 'vue';
+//import {} from '@/api.js';
+//import {onMounted, ref } from 'vue';
 
-const coisa = ref(""); //REATIVO
-const resposta = ref("");
-const mostrarErro = ref(false);
+//const coisa = ref("");
+//const resposta = ref("");
+//const mostrarErro = ref(false);
 </script>
 
 <template>

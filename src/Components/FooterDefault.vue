@@ -6,7 +6,7 @@ import {RouterLink } from 'vue-router';
 <div class="smallspace">
 
 </div>
-<footer class="footerbg py-4 px-1 text-light">
+<footer class="footerbg text-light">
     <div class="d-none d-md-flex justify-content-between">
         <p class="m-0 p-0"><span class="negrito">Copyright Drivewatch</span> - Todos direitos reservados
             <br> Trabalho desenvolvido como parte da disciplina PISH - 2024-1
@@ -46,6 +46,9 @@ i:hover{
     color: var(--cor-branca);
     width: 100%;
     bottom: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
     padding-bottom: 100px; /* to stop free-tinyhost thingy from hiding the footer */
 }
 .smallspace{

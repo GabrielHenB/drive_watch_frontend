@@ -22,7 +22,7 @@ onMounted(async () => {
   loading.value = true;
   try {
     const response = await fetchData(URL_REGISTER);
-    console.log(response);
+    //console.log(response);
     dados.value = response;
     loading.value = false;
   } catch (error) {
