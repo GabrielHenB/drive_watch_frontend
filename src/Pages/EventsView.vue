@@ -1,5 +1,6 @@
 <script setup>
-import {fetchData, URL_EVENTOS, URL_REGISTER} from '@/api.js';
+import {fetchData} from '@/api.js';
+import {URL_EVENTOS, URL_REGISTER} from '@/config.js';
 import {onMounted, ref } from 'vue';
 import Message from '@/Components/Message.vue';
 import LoadingItem from '@/Components/LoadingItem.vue';

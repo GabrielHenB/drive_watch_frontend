@@ -1,5 +1,6 @@
 <script setup>
-import {URL_REGISTER, fetchData} from '@/api.js';
+import {fetchData} from '@/api.js';
+import { URL_REGISTER } from '@/config.js';
 import {onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
