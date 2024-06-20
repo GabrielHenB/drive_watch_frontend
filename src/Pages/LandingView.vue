@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from 'vue';
-import FormComponent from '@/Components/FormComponent.vue';
+import LoginComponent from '@/Components/LoginComponent.vue';
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import FormComponent from '@/Components/FormComponent.vue';
         <section id="landing-container" class="d-flex flex-column justify-content-center align-items-center">
             <img src="drivewatch.png" alt="Drivewatch Icon" class="logo mx-auto my-0" />
             <p>Olá, bem-vindo(a) ao Drivewatch!</p>
-            <FormComponent />
+            <LoginComponent />
         </section>
     </main>
 </template>

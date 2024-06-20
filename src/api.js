@@ -12,7 +12,7 @@ export const fetchData = async (url, params) => {
         httpsAgent: false,
     });
 
-    console.log("Conectando...");
+    //console.log("Conectando...");
 
     try {
         const response = await instance.get(url, {params}).then(response => {
