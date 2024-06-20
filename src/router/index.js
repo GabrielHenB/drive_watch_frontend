@@ -52,6 +52,11 @@ const router = createRouter({
       component: () => import("../Pages/UpdateView.vue")
     },
     {
+      path: base_path + 'landing',
+      name: 'landing_page',
+      component: () => import("../Pages/LandingView.vue")
+    },
+    {
       path: base_path + ':pathMatch(.*)*',
       name: 'notfound',
       component: () => import("../Pages/404.vue")
