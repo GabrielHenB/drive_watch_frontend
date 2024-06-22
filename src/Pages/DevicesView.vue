@@ -1,11 +1,12 @@
 <script setup>
 import {fetchData} from '@/api.js';
-import { URL_REGISTER } from '@/config.js';
+import { URL_REGISTER, URL_DEVICE } from '@/config.js';
 import {onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import Message from '@/Components/Message.vue';
 import LoadingItem from '@/Components/LoadingItem.vue';
+import SearchComponent from '@/Components/SearchComponent.vue';
 
 // Create an Axios instance with custom options
 const instance = axios.create({
@@ -22,7 +23,7 @@ const loading = ref(false);
 onMounted(async () => {
   loading.value = true;
   try {
-    const response = await fetchData(URL_REGISTER);
+    const response = await fetchData(URL_DEVICE);
     //console.log(response);
     dados.value = response;
     loading.value = false;
@@ -33,9 +34,13 @@ onMounted(async () => {
   };
 });
 
+/**
+ * Redireciona para uma route de um device unico a partir do ID
+ * @param {String} query 
+ */
 function redirecionar(query){
   router.push({
-    name: 'pessoas_update',
+    name: 'device_show',
     params: {id: query}
   });
 }
@@ -48,6 +53,7 @@ function closeMsg(){
 
 <template>
   <main>
+    <SearchComponent :endpoint="URL_DEVICE" @result="(device) => redirecionar(device[0].id)" />
     <div v-if="mostrarErro" class="warning">
       <Message titulo="Erro!" @close="closeMsg">
         Ocorreu um erro na requisição. <br>
@@ -58,14 +64,16 @@ function closeMsg(){
     <div v-if="loading" class="text-center m-2 p-2"><LoadingItem></LoadingItem> Carregando...</div>
     <section class="container mt-4">
       <div class="row">
-        <article v-for="(item, index) of dados" class="col-12 col-md-6">
+        <article v-for="(item, index) of dados" :id="'dispositivo_'+index" class="col-12 col-md-6">
           <div class="d-flex justify-content-center align-items-center gap-1 my-3">
             <div class="foto">
               <img src="drivewatch.png" width="260" style="max-width: 100%;" />
             </div>
             <div class="m-0 p-1 d-flex flex-column align-items-center">
-              <h2 class="text-center"><strong>Dispositivo:</strong> <span>{{ item.id_device }}</span></h2>
-              <p class="text-start"><strong>Empresa:</strong> <span>{{ item.id_company }}</span></p>
+              <h2 class="text-center"><strong>Dispositivo:</strong> <span>{{ item.id }}</span></h2>
+              <p class="text-start"><strong>Empresa:</strong> <span>{{ item.idCompany }}</span></p>
+              <p class="text-start"><strong>Placa:</strong> <span>{{ item.plate }}</span></p>
+              <p class="text-end">Version: {{ item.version }}</p>
             </div>
           </div>
         </article>

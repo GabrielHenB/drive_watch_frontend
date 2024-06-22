@@ -9,6 +9,15 @@
                 <p class="col-12 text-start ps-4 fs-4">Plano: <span class="platinum">Watcher Basic</span></p>
                 <p class="text-center fs-1">...</p>
         </article>
+        <section class="row">
+                <article  class="col-12 border-1 rounded m-1 p-1 flex justify-evenly items-center">
+                        Projeto desenvolvido como parte da disciplina PISH em 2024.
+                        Grupo: Cristian<br>
+                        Dayane<br>
+                        Gabriel B<br>
+                        Guilherme<br>
+                </article>
+        </section>
 </section>
 </template>
 

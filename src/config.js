@@ -1,7 +1,8 @@
 // DEFINES CONSTANTS AND USEFUL GLOBALS
 
 //export const API_BASE = "http://localhost:8080/api/v1/"
-export const API_BASE = "https://6609d2960f324a9a2883d1bb.mockapi.io/api/v1/"
+//export const API_BASE = "https://6609d2960f324a9a2883d1bb.mockapi.io/api/v1/"
+export const API_BASE = "https://drivewatchbackend-production.up.railway.app/api/v1/";
 
 // ENDPOINTS GET
 const register = "register";
@@ -23,6 +24,7 @@ export const pessoas_up = "pessoas/up";
 
 export const URL_REGISTER = API_BASE + register;
 export const URL_EVENTOS = API_BASE + eventos;
+export const URL_DEVICE = API_BASE + devices;
 export const URL_PESSOAS_UP = API_BASE + pessoas_up;
 export const URL_ACESSO = API_BASE + "tem_acesso";
 export const URL_GET_BY_DEVICE = API_BASE + register + '/' + devices + '/';

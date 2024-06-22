@@ -47,6 +47,9 @@ export class Fetcher{
                     if (response.status >= 200 && response.status < 300 && response.data) {
                         return response; // Atribuido ao const response
                     }
+                    else if (!response.data) {
+                        throw new Error("Formato de resposta inválido da requisição! Reason: data vazio");
+                    }
                     else throw new Error("Formato de resposta invalido da requisicao!");
                 }
             );

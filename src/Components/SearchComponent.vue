@@ -84,6 +84,7 @@ const onSubmit = async () => {
             console.log("DEBUG: Realizando fetch para o endpoint: ", props.endpoint + `/${formData.query}`);
             const response = await fetcher.useFetch(props.endpoint + `/${formData.query}`);
             // emitir novos:
+            formData.dados.push(response);
             sendEmit(formData.dados);
         }else{
             throw new Error("Erro Local: Nao foi possivel enviar a requisicao! ");

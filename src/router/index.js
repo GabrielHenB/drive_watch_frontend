@@ -47,9 +47,9 @@ const router = createRouter({
       component: () => import("../Pages/ConfigView.vue")
     },
     {
-      path: base_path + 'devices/update/:id',
-      name: 'device_update',
-      component: () => import("../Pages/UpdateView.vue")
+      path: base_path + 'device/:id',
+      name: 'device_show',
+      component: () => import("../Pages/SingleDeviceView.vue")
     },
     {
       path: base_path + 'landing',
