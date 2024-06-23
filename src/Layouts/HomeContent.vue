@@ -15,6 +15,7 @@ const loading = ref(false);
 onMounted(async () => {
   loading.value = true;
   try {
+    console.log("Realizando fetch para " + URL_REGISTER);
     const response = await fetchData(URL_REGISTER);
     //console.log(response);
     dados.value = response;
@@ -22,6 +23,8 @@ onMounted(async () => {
     console.error('Error fetching data:', error);
     resposta.value = "Erro: " + error.message;
     mostrarErro.value = true;
+  }finally{
+    loading.value = false;
   };
 });
 
@@ -44,6 +47,17 @@ function formatar_data(datestring){
       return newDate.toLocaleString('pt-BR', options);
 }
 
+function formatar_tipo(tipo){
+    switch(tipo){
+        case 'SLEEPING':
+            return 'DORMINDO';
+        case 'AWAKE':
+            return 'ACORDADO';
+        default:
+            return tipo;
+    }
+}
+
 </script>
 <template>
     <div v-if="mostrarErro" class="warning">
@@ -58,7 +72,7 @@ function formatar_data(datestring){
                     <div class="icontainer" style="object-fit: contain;">
                       <img :src="item.image" alt="" style="width: 400px;  max-width: 100%;">
                     </div>
-                    <p class="my-0 py-0" style="font-size: medium;"><span class="negrito">Classe: </span> {{ item.class === "SLEEPING" ? "Dormindo" : "Acordado" }}</p>
+                    <p class="my-0 py-0" style="font-size: medium;"><span class="negrito">Classe: </span> {{ formatar_tipo(item.type) }}</p>
                     <p class="my-0 py-0" style="font-size: small;"><span class="negrito">Data:</span> {{ formatar_data(item.occurenceDate) }}</p>
                 </div>
             </div>

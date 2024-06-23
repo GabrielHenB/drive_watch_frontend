@@ -42,8 +42,8 @@ const router = createRouter({
       component: () => import("../Pages/AccountView.vue")
     },
     {
-      path: base_path + "help",
-      name: "help",
+      path: base_path + "config",
+      name: "config",
       component: () => import("../Pages/ConfigView.vue")
     },
     {

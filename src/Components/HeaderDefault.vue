@@ -19,7 +19,7 @@ import HeaderLogo from '@/Components/HeaderLogo.vue';
             </nav>
             <nav class="d-none d-md-flex gap-3 mx-2">
                 <RouterLink class="headeritem negrito" :to="{name: 'account'}">Sua Conta</RouterLink>
-                <RouterLink class="headeritem negrito" :to="{name: 'help'}">Help</RouterLink>
+                <RouterLink class="headeritem negrito" :to="{name: 'config'}">Config</RouterLink>
             </nav>
         </div>
     </header>

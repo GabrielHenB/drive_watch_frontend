@@ -1,7 +1,7 @@
 <script setup>
-import {fetchData} from '@/api.js';
-import {URL_EVENTOS, URL_REGISTER} from '@/config.js';
-import {onMounted, ref } from 'vue';
+import { Fetcher } from '@/api.js';
+import { URL_REGISTER } from '@/config.js';
+import { onMounted, ref } from 'vue';
 import Message from '@/Components/Message.vue';
 import LoadingItem from '@/Components/LoadingItem.vue';
 
@@ -13,21 +13,29 @@ const loading = ref(false);
 // Quando o componente for montado execute isso:
 onMounted(async () => {
   loading.value = true;
+  const fetcher = new Fetcher();
   try {
-    const res = await fetchData(URL_REGISTER);
+    console.log("DEBUG: Realizando fetch de REGISTER em " + URL_REGISTER);
+    //const res = await fetchData(URL_REGISTER);
+    const res = await fetcher.useFetch(URL_REGISTER);
     //console.log(res);
     dados.value = res;
-    loading.value = false;
   } catch (error) {
     console.error('Error fetching data:', error);
     resposta.value = "Erro: " + error.message;
     mostrarErro.value = true;
+  } finally {
+    loading.value = false;
   }
 });
 
 function renderError(msg){
   //resposta.value=msg;
   mostrarErro.value=true;
+}
+
+function closeError(){
+  mostrarErro.value = false;
 }
 
 function formatar_data(datestring){
@@ -45,11 +53,22 @@ function formatar_data(datestring){
       return newDate.toLocaleString('pt-BR', options);
 }
 
+function formatar_tipo(tipo){
+    switch(tipo){
+        case 'SLEEPING':
+            return 'DORMINDO';
+        case 'AWAKE':
+            return 'ACORDADO';
+        default:
+            return tipo;
+    }
+}
+
 </script>
 
 <template>
 <main>
-    <Message v-if="mostrarErro" @close="renderError" class="warning">
+    <Message v-if="mostrarErro" @close="closeError" class="warning">
       Ocorreu um erro na requisição. <br> <span class="text-danger">{{ resposta}}</span>
     </Message>
     
@@ -59,7 +78,7 @@ function formatar_data(datestring){
         Carregando...
       </div>
       <div v-else>
-        Nenhum evento foi registrado
+        Nenhum evento foi registrado (Sem dados para exibir)
       </div>
     </div>
 
@@ -71,9 +90,8 @@ function formatar_data(datestring){
                   <img :src="item.image">
                 </div>
                 <div class="fs-4">
-                  <h2 class="fs-5 display-1"><label :for="'in_'+index"><span class="negrito">Classe: &#8194;</span></label>{{ item.class }}</h2>
+                  <h2 class="fs-5 display-1"><label :for="'in_'+index"><span class="negrito">Classe: &#8194;</span></label>{{ formatar_tipo(item.type) }}</h2>
                   <p class="my-0 p-0"><span>ID Device: </span> {{ item.id_device }}</p>
-                  <p class="my-0 p-0"><span>ID Company: </span> {{ item.id_company }}</p>
                   <p class="fs-6"><span>Horário:</span> <span class="datetime">{{  formatar_data(item.occurenceDate) }}</span></p>
                   <!--<button onclick="window.alert('Indisponivel!')" class="btn btn-primary">Editar</button>-->
                 </div>

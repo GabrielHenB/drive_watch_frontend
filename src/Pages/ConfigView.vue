@@ -51,7 +51,8 @@ const mockit = () => {
                 </article>
         </section>
         <article class="row">
-                <form @submit:prevent="mockit" action="#" method="POST">
+                <h2>Inserir nova empresa: </h2>
+                <form @submit:prevent="mockit" action="#" method="POST" class="d-flex flex-column justify-content-center align-items-center gap-1">
                         <label for="inputCompanyName">Nome da Empresa: </label>
                         <input type="text" name="inputCompanyName" id="inputCompanyName" v-model="mock.name"/>
                         <label for="inputCompanyEmail">E-mail: </label>
