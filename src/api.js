@@ -41,6 +41,7 @@ export class Fetcher{
     };
 
     async useFetch(url, params){
+        //console.log("useFetch debug. URL = ", url);
         try {
             const response = await this.instance.get(url, { params }).then(
                 response => {

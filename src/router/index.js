@@ -39,7 +39,7 @@ const router = createRouter({
     {
       path: base_path + "account",
       name: 'account',
-      component: () => import("../Pages/ConfigView.vue")
+      component: () => import("../Pages/AccountView.vue")
     },
     {
       path: base_path + "help",

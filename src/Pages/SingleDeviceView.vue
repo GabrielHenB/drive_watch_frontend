@@ -9,7 +9,6 @@ const route = useRoute();
 const hasMsg = ref(false);
 const msg = ref('');
 const loading = ref(false);
-//const id_device = ref(route.params.id);
 const device_data = reactive({
     id_device: route.params.id,
     plate: '',
@@ -56,6 +55,7 @@ const runEveryMount = async () => {
 
 onMounted(async () => await runEveryMount());
 
+// Resets Message
 const close = () => {hasMsg.value = false; msg.value = '';}
 
 </script>
@@ -65,14 +65,15 @@ const close = () => {hasMsg.value = false; msg.value = '';}
     <Message v-if="hasMsg"  @close="close">
         <p>{{ msg }}</p>
     </Message>
-    <p v-if="loading">Carregando...</p>
+    <p v-if="loading" class="m-4 text-center fs-2">Carregando...</p>
     <div v-if="device_data.company" class="m-0 p-1 d-flex flex-column align-items-center">
               <h2 class="text-center"><strong>Dispositivo:</strong> <span>{{ device_data.id_device }}</span></h2>
-              <p class="text-start"><strong>Empresa:</strong> <span>A</span></p>
-              <p class="text-start"><strong>Placa:</strong> <span>ABC</span></p>
-              <p class="text-end">Version: 22</p>
+              <p class="text-start"><strong>Empresa:</strong> <span>{{ device_data.company }}</span></p>
+              <p class="text-start"><strong>Placa:</strong> <span>{{ device_data.plate }}</span></p>
+              <p class="text-start"><strong>Telefone:</strong> <span>{{ device_data.phone }}</span></p>
+              <p class="text-end">Version: <span>{{ device_data.version }}</span></p>
     </div>
-    <div v-else>
+    <div v-else-if="!loading">
         <p class="mx-auto my-2 text-center p-1 fs-2">Houveram erros na obtenção de informações do dispositivo.<br> Tente novamente!</p>
     </div>
 </main>

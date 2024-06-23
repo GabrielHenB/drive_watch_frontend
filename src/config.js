@@ -4,6 +4,9 @@
 //export const API_BASE = "https://6609d2960f324a9a2883d1bb.mockapi.io/api/v1/"
 export const API_BASE = "https://drivewatchbackend-production.up.railway.app/api/v1/";
 
+
+export const FRONTEND_BASE = "http://localhost:5173/";
+
 // ENDPOINTS GET
 const register = "register";
 //const eventos = "event";

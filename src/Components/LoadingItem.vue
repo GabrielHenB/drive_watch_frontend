@@ -1,6 +1,11 @@
 <template>
-    <img class="rodar" src="/drivewatch.png" width="100" />
+    <img class="rodar" :src="source" width="100" alt="Carregando... aguarde!" />
 </template>
+
+<script setup>
+import { FRONTEND_BASE } from '@/config.js';
+const source = FRONTEND_BASE + '/drivewatch.png';
+</script>
 
 <style scoped>
 .rodar{
