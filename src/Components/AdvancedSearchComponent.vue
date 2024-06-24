@@ -133,24 +133,33 @@ const closeMsg = () => resetMessages();
     <Message v-if="formData.hasError" @close="closeMsg">
         <p>{{ formData.msg }}</p>
     </Message>
-    <FormLayout method="POST" v-bind:on-submit="handleSearch" v-bind:data="formData" >
-        <p>Busca Avançada: </p>
-        <label for="searchInput">Busca por ID:</label>
-        <input type="number" name="searchId" id="searchId" v-model="formData.queryId"/>
-        <label for="searchClass">Tipo</label>
-        <select name="searchClass" id="searchClass" v-model="formData.queryClass">
-            <option value="all" selected>Todos</option>
-            <option value="awake">Acordado</option>
-            <option value="sleeping">Dormindo</option>
-        </select>
-        <label for="searchDate">Data</label>
-        <select name="searchDateOption" id="searchDateOption" v-model="formData.queryDateOp">
-            <option value="asc">Maior que</option>
-            <option value="dsc">Menor que</option>
-            <option value="exact">Igual a</option>
-            <option value="any" selected>Qualquer</option>
-        </select>
-        <input type="date" name="searchDate" id="searchDate" v-model="formData.queryDate"/>
+    <FormLayout method="POST" v-bind:on-submit="handleSearch" v-bind:data="formData" classes="d-flex flex-column justify-content-center align-items-center my-2 py-1 gap-1">
+        <h3 class="text-center fs-2 text-dark mx-auto p-1">Busca Avançada</h3>
+        <div>
+            <label for="searchInput">Busca por ID:</label>
+            <input class="mx-1" type="number" name="searchId" id="searchId" v-model="formData.queryId"/>
+        </div>
+        <div>
+            <label for="searchClass">Tipo</label>
+            <select class="mx-1" name="searchClass" id="searchClass" v-model="formData.queryClass">
+                <option value="all" selected>Todos</option>
+                <option value="awake">Acordado</option>
+                <option value="sleeping">Dormindo</option>
+            </select>
+        </div>
+        <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
+            <label for="searchDate">Data</label>
+            <div>
+                <select name="searchDateOption" id="searchDateOption" v-model="formData.queryDateOp" class="mx-1">
+                    <option value="asc">Maior que</option>
+                    <option value="dsc">Menor que</option>
+                    <option value="exact">Igual a</option>
+                    <option value="any" selected>Qualquer</option>
+                </select>
+                <input type="date" name="searchDate" id="searchDate" v-model="formData.queryDate"/>
+            </div>
+            <label for="searchDate" class="reducefont">(Deixe sem valor para desconsiderar)</label>
+        </div>
         <input type="submit" class="btn btn-primary" value="Go" />
     </FormLayout>
     <span v-if="formData.isLoading" class="bg-dark text-warning p-2">Aguarde, Carregando...</span>
@@ -165,5 +174,8 @@ input{
     border: 1px solid var(--cor-universo);
     padding: 5px;
     max-width: 100%;
+}
+.reducefont{
+    font-size: smaller;
 }
 </style>

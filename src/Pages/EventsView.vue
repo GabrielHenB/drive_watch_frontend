@@ -22,7 +22,7 @@ onMounted(async () => {
     //console.log("DEBUG: Realizando fetch de REGISTER em " + URL_REGISTER);
     //const res = await fetchData(URL_REGISTER);
     const res = await fetcher.useFetch(URL_REGISTER);
-    console.log(res);
+    //console.log(res);
     dados.value = [...res];
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -42,10 +42,17 @@ function closeError(){
  * @param {String} id 
  */
  function redirecionar(id){
-  router.push({
-    name: 'device_show',
-    params: {id: id}
-  });
+  if(!id){
+    router.push({
+      name: 'index'
+    });
+  }
+  else{
+    router.push({
+      name: 'device_show',
+      params: {id: id}
+    });
+  }
 }
 
 function formatar_data(datestring){
@@ -96,7 +103,8 @@ function handleResult(data){
         Carregando...
       </div>
       <div v-else>
-        Nenhum evento foi registrado (Sem dados para exibir)
+        <p>Nenhum evento foi registrado (Sem dados para exibir)</p>
+        <a href="#" @click.prevent="() => redirecionar(null)">Retornar</a>
       </div>
     </div>
 
