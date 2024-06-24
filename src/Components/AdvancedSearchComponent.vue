@@ -93,7 +93,7 @@ const handleSearch = () => {
         formData.dados = formData.dados.filter((el) => {
             let returnIt = true;
             const elDate = new Date(el.occurrenceDate);
-            if(formData.queryId !== null && Number(el.id) !== Number(formData.queryId)) returnIt = false;
+            if(formData.queryId !== null && Number(el.idDevice) !== Number(formData.queryId)) returnIt = false;
             if(formData.queryClass !== "all" && el.type !== formData.queryClass.toUpperCase()) returnIt = false;
             if(formData.queryDate){
                 switch (formData.queryDateOp) {
@@ -136,8 +136,8 @@ const closeMsg = () => resetMessages();
     <FormLayout method="POST" v-bind:on-submit="handleSearch" v-bind:data="formData" classes="d-flex flex-column justify-content-center align-items-center my-2 py-1 gap-1">
         <h3 class="text-center fs-2 text-dark mx-auto p-1">Busca Avançada</h3>
         <div>
-            <label for="searchInput">Busca por ID:</label>
-            <input class="mx-1" type="number" name="searchId" id="searchId" v-model="formData.queryId"/>
+            <label for="searchId">ID do device:</label>
+            <input class="mx-1" type="number" name="searchId" id="searchId" v-model="formData.queryId" placeholder="ID do Device"/>
         </div>
         <div>
             <label for="searchClass">Tipo</label>

@@ -141,10 +141,12 @@ const showUpdateForm = () => {isUpdate.value = !isUpdate.value; };
 <template>
 <main class="container-fluid">
     <section class="row">
-        <Message v-if="hasMsg" :tipo="msgType"  @close="close">
-            <p>{{ msg }}</p>
-        </Message>
-        <p v-if="loading" class="m-4 text-center fs-2">Carregando...</p>
+        <div class="container-fluid">
+            <Message v-if="hasMsg" :tipo="msgType"  @close="close">
+                <p>{{ msg }}</p>
+            </Message>
+        </div>
+        <p v-if="loading" class="m-4 text-center fs-2 col-12">Carregando...</p>
         <section class="col">
             <div v-if="data.name || data.email || data.id" class="mx-2 my-1 p-1">
                 <div v-if="!isUpdate" class="d-flex flex-column justify-content-start align-items-center">

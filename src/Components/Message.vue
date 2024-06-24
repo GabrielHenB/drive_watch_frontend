@@ -13,6 +13,12 @@ const props = defineProps({
         default(){
             return "Aviso";
         }
+    },
+    styling: {
+        type: String,
+        default(){
+            return "";
+        }
     }
 });
 
@@ -33,6 +39,7 @@ const messageType = computed(() => {
             return base + "bi-exclamation-triangle-fill use-warning";
     }
 });
+
 
 function close(){
     emit('close',true);

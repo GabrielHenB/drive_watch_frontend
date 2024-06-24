@@ -8,6 +8,10 @@ import LoginComponent from '@/Components/LoginComponent.vue';
         <section id="landing-container" class="d-flex flex-column justify-content-center align-items-center">
             <img src="drivewatch.png" alt="Drivewatch Icon" class="logo mx-auto my-0" />
             <p>Olá, bem-vindo(a) ao Drivewatch!</p>
+            <nav class="d-flex justify-content-evenly align-items-center gap-2">
+                <button class="btn btn-primary">Usuário</button>
+                <button class="btn btn-info">Funcionário</button>
+            </nav>
             <LoginComponent />
         </section>
     </main>

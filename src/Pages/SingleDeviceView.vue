@@ -35,15 +35,16 @@ const runEveryMount = async () => {
             const device_response = await fetcher.useFetch(CONSTS.URL_DEVICE + `/${device_data.id_device}`);
             // Fetches the company by device
             const company_response = await fetcher.useFetch(CONSTS.URL_COMPANY + "/" + device_response.idCompany);
-            // Fetches the phone by device
-            const phone_response = await fetcher.useFetch(CONSTS.URL_PHONE_BY_DEVICE + device_data.id_device);
+            // Fetches the phone by device. Not required.
+            const phone_response = await fetcher.useFetchAllowEmpty(CONSTS.URL_PHONE_BY_DEVICE + device_data.id_device);
             // Debug
             //console.log(device_response, company_response, phone_response);
             // Se OK
             device_data.plate = device_response.plate;
             device_data.version = device_response.version;
             device_data.company = company_response.name;
-            device_data.phone = `(${phone_response.areaCode}) ${phone_response.phoneNumber}`;
+            if(!phone_response) device_data.phone = "Não registrado!";
+            else device_data.phone = `(${phone_response.areaCode}) ${phone_response.phoneNumber}`;
         }catch(error){
             console.error(error);
             msg.value = error.message;
@@ -109,9 +110,11 @@ const close = () => {hasMsg.value = false; msg.value = '';}
 <template>
 <main class="container-fluid">
     <section class="row">
-        <Message v-if="hasMsg"  @close="close">
-            <p>{{ msg }}</p>
-        </Message>
+        <div class="container-fluid">
+            <Message v-if="hasMsg"  @close="close">
+                <p>{{ msg }}</p>
+            </Message>
+        </div>
         <p v-if="loading" class="m-4 text-center fs-2">Carregando...</p>
         <section class="col-md-3 col-12">
             <div v-if="device_data.company" class="mx-2 my-1 p-1 d-flex flex-column justify-content-start align-items-center">

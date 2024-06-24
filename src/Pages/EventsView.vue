@@ -118,7 +118,7 @@ function handleResult(data){
                 </div>
                 <div class="fs-4">
                   <h2 class="fs-5 display-1"><label :for="'in_'+index"><span class="negrito">Classe: &#8194;</span></label>{{ formatar_tipo(item.type) }}</h2>
-                  <p class="my-0 p-0"><span>ID Device: </span> <a @click.prevent="() => redirecionar(item.id)" href="#">{{ item.id}}</a></p>
+                  <p class="my-0 p-0"><span>ID Device: </span> <a @click.prevent="() => redirecionar(item.idDevice)" href="#">{{ item.idDevice}}</a></p>
                   <p class="fs-6"><span>Horário:</span> <span class="datetime">{{  formatar_data(item.occurrenceDate) }}</span></p>
                   <!--<button onclick="window.alert('Indisponivel!')" class="btn btn-primary">Editar</button>-->
                 </div>

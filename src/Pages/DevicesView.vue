@@ -1,23 +1,23 @@
 <script setup>
-import {fetchData} from '@/api.js';
-import { URL_REGISTER, URL_DEVICE } from '@/config.js';
-import {onMounted, ref } from 'vue';
+import { fetchData } from '@/api.js';
+import { URL_DEVICE } from '@/config.js';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import Message from '@/Components/Message.vue';
 import LoadingItem from '@/Components/LoadingItem.vue';
 import SearchComponent from '@/Components/SearchComponent.vue';
-
-// Create an Axios instance with custom options
-const instance = axios.create({
-  httpsAgent: false,
-});
+import DeviceCreate from '@/Layouts/DeviceCreate.vue';
+import DeviceUpdate from '@/Layouts/DeviceUpdate.vue';
 
 const dados = ref([]); //REATIVO
 const resposta = ref("");
 const mostrarErro = ref(false);
 const router = useRouter();
 const loading = ref(false);
+const showCreateForm = ref(false);
+const showUpdateForm = ref(false);
+const deviceToUpdate = ref({});
 
 // Executa apos mounted
 onMounted(async () => {
@@ -49,6 +49,11 @@ function closeMsg(){
   mostrarErro.value = false;
 }
 
+function handleUpdateForm(item){
+  showUpdateForm.value = true;
+  deviceToUpdate.value = {...item};
+}
+
 </script>
 
 <template>
@@ -69,16 +74,28 @@ function closeMsg(){
             <div class="foto">
               <img src="drivewatch.png" width="260" style="max-width: 100%;" />
             </div>
-            <div class="m-0 p-1 d-flex flex-column align-items-center">
+            <div class="m-0 p-1 d-flex flex-column align-items-center device-container" @click="() => redirecionar(item.id)">
               <h2 class="text-center"><strong>Dispositivo:</strong> <span>{{ item.id }}</span></h2>
               <p class="text-start"><strong>Empresa:</strong> <span>{{ item.idCompany }}</span></p>
               <p class="text-start"><strong>Placa:</strong> <span>{{ item.plate }}</span></p>
               <p class="text-end">Version: {{ item.version }}</p>
             </div>
+            <button @click="(ev) => handleUpdateForm(item)" class="btn btn-warning">Editar</button>
           </div>
         </article>
       </div>
     </section>
+    <div v-if="showUpdateForm" class="floatingFormContainer">
+      <span v-on:click="showUpdateForm = false" style="position: relative; color: red; cursor: pointer; font-size: 16pt;">X</span>
+      <DeviceUpdate :device="deviceToUpdate"></DeviceUpdate>
+    </div>
+    <div v-if="showCreateForm" class="floatingFormContainer">
+      <span v-on:click="showCreateForm = !showCreateForm" style="position: relative; color: red; cursor: pointer; font-size: 16pt;">X</span>
+      <DeviceCreate></DeviceCreate>
+    </div>
+    <div class="floatingButton">
+      <button @click="showCreateForm = true"><i class="bi bi-plus-circle-fill"></i></button>
+    </div>
   </main>
 </template>
 
@@ -87,5 +104,36 @@ function closeMsg(){
   max-width: 100%;
   width: 380px;
   height: 100%;
+}
+.device-container{
+  cursor: pointer;
+}
+.device-container:hover{
+  transform: scale(1.06);
+}
+.floatingFormContainer{
+  position: fixed;
+  z-index: 94;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  background-color: rgba(30, 58, 117, 0.84);
+  border-radius: 16px;
+  padding: 10px;
+}
+.floatingButton{
+  position: fixed;
+  z-index: 96;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0);
+  padding: 10px;
+}
+.floatingButton button{
+  border: none;
+  font-size: 60pt;
+  background-color: inherit;
+  color: var(--cor-universo-claro);
 }
 </style>

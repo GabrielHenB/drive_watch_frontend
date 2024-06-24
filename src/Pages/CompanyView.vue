@@ -72,9 +72,10 @@ function closeMsg(){
         <div v-if="loading" class="text-center m-2 p-2"><LoadingItem></LoadingItem> Carregando...</div>
         <div v-if="dados.length === 0 && !loading" class="fs-4 text-center py-4">Nenhuma empresa foi encontrada</div>
         <div v-if="dados.length > 0" class="row">
-            <div class="col-12 mx-2 my-1 p-1" v-for="(item,index) of dados" :id="'empresa' + index"  >
+            <div class="col mx-2 my-1 p-1 text-center" v-for="(item,index) of dados" :id="'empresa' + index"  >
+                <i class="bi bi-building-fill company-icon"></i>
                 <h4 @click="() => redirecionar(item.id)" style="cursor: pointer">{{ item.name }}</h4>
-                <p>{{ item.email }}</p>
+                <p class="text-center">{{ item.email }}</p>
             </div>
         </div>
     </div>
@@ -82,4 +83,9 @@ function closeMsg(){
 </template>
 
 <style scoped>
+.company-icon{
+    display: inline-block;
+    font-size: 18pt;
+    text-align: center;
+}
 </style>

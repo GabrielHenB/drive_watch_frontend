@@ -12,6 +12,15 @@ const resposta = ref("");
 const mostrarErro = ref(false);
 const loading = ref(false);
 
+
+function sortLatest () {
+  if(dados.value.length > 0){
+    dados.value.sort((a,b) => {
+      return (new Date(b.occurrenceDate)) - (new Date (a.occurrenceDate));
+    });
+  }
+}
+
 // Executa apos mounted
 onMounted(async () => {
   loading.value = true;
@@ -20,6 +29,7 @@ onMounted(async () => {
     const response = await fetchData(URL_REGISTER);
     //console.log(response);
     dados.value = response;
+    sortLatest();
   } catch (error) {
     console.error('Error fetching data:', error);
     resposta.value = "Erro: " + error.message;
@@ -68,8 +78,8 @@ function formatar_tipo(tipo){
       </Message>
     </div>
     <div class="row justify-content-between" v-if="dados.length > 0">
-            <div class="col-12 col-md-6 col-lg text-center my-1" v-for="(item,index) of dados">
-                <div class="border rounded py-1" v-if="index < 3">
+            <div class="col-12 col-md-6 col-lg text-center my-1" v-for="(item,index) of (dados.slice(0,3))" :id="`register_${index}`">
+                <div class="border rounded py-1">
                     <div class="icontainer" style="object-fit: contain;">
                       <MediaComponent :source="item.image" :is64="true" alt="Fotografia obtida do dispositivo" style="width: 400px;  max-width: 100%;">
                       </MediaComponent>
