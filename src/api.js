@@ -61,4 +61,69 @@ export class Fetcher{
             throw error;
         }
     };
+
+    async useFetchAllowEmpty(url, params){
+        // Este permite que o data esteja vazio como parte da logica
+        try {
+            const response = await this.instance.get(url, { params }).then(
+                response => {
+                    if (response.status >= 200 && response.status < 300 && response.data) {
+                        return response; // Atribuido ao const response
+                    }
+                    else if (response.status >= 200 && response.status < 300 && !response.data) {
+                        console.warn("Warning do Objeto Fetcher. Reason: data vazio no objeto request!");
+                        return response;
+                    }
+                    else throw new Error("Formato de resposta invalido da requisicao!");
+                }
+            );
+            // Retorno do fetchData
+            return response.data;
+        }catch(error){
+            console.error("Error fetching data. Error = ", error);
+            throw error;
+        }
+    };
+
+    async usePostRequest(url, payload){
+        try {
+            const response = await this.instance.post(url, payload).then(response => {
+                if(response.status >= 200 && response.status < 300 && response.data){
+                    //console.log(response);
+                    return response; // Atribuido ao const response
+                }
+                else if (!response.data) {
+                    throw new Error("Formato de resposta inválido da requisição! Reason: data vazio");
+                }
+                else{
+                    throw new Error("Formato de resposta inválido da requisição!");
+                }
+            });
+            return response.data; // Retorno do metodo
+        }catch(error){
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    };
+
+    async usePutRequest(url, payload){
+        try {
+            const response = await this.instance.put(url, payload).then(response => {
+                if(response.status >= 200 && response.status < 300 && response.data){
+                    //console.log(response);
+                    return response; // Atribuido ao const response
+                }
+                else if (!response.data) {
+                    throw new Error("Formato de resposta inválido da requisição! Reason: data vazio");
+                }
+                else{
+                    throw new Error("Formato de resposta inválido da requisição!");
+                }
+            });
+            return response.data; // Retorno do metodo
+        }catch(error){
+            console.error('Error fetching data:', error);
+            throw error;
+        }
+    };
 };

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { URL_COMPANY, URL_COMPANY_GETALL } from '@/config.js';
 import {Fetcher} from '@/api.js';
 import SearchComponent from '@/Components/SearchComponent.vue';
@@ -10,6 +11,7 @@ const dados = ref([]);
 const msg = ref("");
 const mostrarErro = ref(false);
 const loading = ref(false);
+const router = useRouter();
 
 onMounted(async () => {
     const fetcher = new Fetcher();
@@ -29,6 +31,17 @@ onMounted(async () => {
         //dados.value = [{name: "SuperMart", email: "super"},{name: "Josjwcnwj", email: "sisxijwi"}];
     }
 });
+
+/**
+ * Redireciona para uma route de uma empresa unica a partir do ID
+ * @param {String} query 
+ */
+ function redirecionar(query){
+  router.push({
+    name: 'company_update',
+    params: {id: query}
+  });
+}
 
 function getSearch(data){
     // Obtem os dados do Emit do SearchComponent e joga no ref dados.
@@ -60,7 +73,7 @@ function closeMsg(){
         <div v-if="dados.length === 0 && !loading" class="fs-4 text-center py-4">Nenhuma empresa foi encontrada</div>
         <div v-if="dados.length > 0" class="row">
             <div class="col-12 mx-2 my-1 p-1" v-for="(item,index) of dados" :id="'empresa' + index"  >
-                <h4>{{ item.name }}</h4>
+                <h4 @click="() => redirecionar(item.id)" style="cursor: pointer">{{ item.name }}</h4>
                 <p>{{ item.email }}</p>
             </div>
         </div>

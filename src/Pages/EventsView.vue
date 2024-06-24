@@ -2,6 +2,7 @@
 import { Fetcher } from '@/api.js';
 import { URL_REGISTER } from '@/config.js';
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import Message from '@/Components/Message.vue';
 import LoadingItem from '@/Components/LoadingItem.vue';
 
@@ -9,13 +10,14 @@ const dados = ref([]); //REATIVO
 const resposta = ref("");
 const mostrarErro = ref(false);
 const loading = ref(false);
+const router = useRouter();
 
 // Quando o componente for montado execute isso:
 onMounted(async () => {
   loading.value = true;
   const fetcher = new Fetcher();
   try {
-    console.log("DEBUG: Realizando fetch de REGISTER em " + URL_REGISTER);
+    //console.log("DEBUG: Realizando fetch de REGISTER em " + URL_REGISTER);
     //const res = await fetchData(URL_REGISTER);
     const res = await fetcher.useFetch(URL_REGISTER);
     //console.log(res);
@@ -29,13 +31,19 @@ onMounted(async () => {
   }
 });
 
-function renderError(msg){
-  //resposta.value=msg;
-  mostrarErro.value=true;
-}
-
 function closeError(){
   mostrarErro.value = false;
+}
+
+/**
+ * Redireciona para uma route de um device unico a partir do ID
+ * @param {String} id 
+ */
+ function redirecionar(id){
+  router.push({
+    name: 'device_show',
+    params: {id: id}
+  });
 }
 
 function formatar_data(datestring){
@@ -87,12 +95,12 @@ function formatar_tipo(tipo){
         <article v-for="(item,index) of dados"  class="d-flex justify-content-center gap-2 my-2 col-12 col-md-6 col-lg-4 mx-auto px-2">
             <div class="modified-flex">
                 <div class="foto">
-                  <img :src="item.image">
+                  <img :src="item.image" alt="Foto">
                 </div>
                 <div class="fs-4">
                   <h2 class="fs-5 display-1"><label :for="'in_'+index"><span class="negrito">Classe: &#8194;</span></label>{{ formatar_tipo(item.type) }}</h2>
-                  <p class="my-0 p-0"><span>ID Device: </span> {{ item.id_device }}</p>
-                  <p class="fs-6"><span>Horário:</span> <span class="datetime">{{  formatar_data(item.occurenceDate) }}</span></p>
+                  <p class="my-0 p-0"><span>ID Device: </span> <a @click.prevent="() => redirecionar(item.id)" href="#">{{ item.id}}</a></p>
+                  <p class="fs-6"><span>Horário:</span> <span class="datetime">{{  formatar_data(item.occurrenceDate) }}</span></p>
                   <!--<button onclick="window.alert('Indisponivel!')" class="btn btn-primary">Editar</button>-->
                 </div>
             </div>

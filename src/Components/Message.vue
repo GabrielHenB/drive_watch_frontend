@@ -1,9 +1,11 @@
 <script setup>
-defineProps({
+import { computed } from 'vue';
+
+const props = defineProps({
     tipo: {
         type: String,
         default(){
-            return 'normal';
+            return 'warning';
         }
     },
     titulo: {
@@ -16,6 +18,22 @@ defineProps({
 
 const emit = defineEmits(['close']);
 
+const messageType = computed(() => {
+    const base = "msgicon bi ";
+    switch(props.tipo){
+        case "error":
+            return base + "bi-exclamation-triangle-fill use-error";
+        case "warning":
+            return base + "bi-exclamation-triangle-fill use-warning";
+        case "info":
+            return base + "bi-info-circle-fill use-info";
+        case "success":
+            return base + "bi-check-circle-fill use-success";
+        default:
+            return base + "bi-exclamation-triangle-fill use-warning";
+    }
+});
+
 function close(){
     emit('close',true);
 }
@@ -25,7 +43,7 @@ function close(){
 <template>
     <div class="container-mensagem">
         <div class="content-mensagem d-flex flex-column justify-content-center align-items-center">
-            <i class="bi bi-exclamation-triangle-fill msgicon" style="color: yellow;"></i>
+            <i :class="messageType"></i>
             <h2>{{ titulo }}</h2>
             <p>
                 <slot></slot>
@@ -53,4 +71,8 @@ function close(){
 .msgicon{
     font-size: 60px;
 }
+.use-warning{ color: yellow; }
+.use-info{ color: white; }
+.use-error{ color: red; }
+.use-success{ color: green; }
 </style>

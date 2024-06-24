@@ -15,7 +15,7 @@ const loading = ref(false);
 onMounted(async () => {
   loading.value = true;
   try {
-    console.log("Realizando fetch para " + URL_REGISTER);
+    //console.log("Realizando fetch para " + URL_REGISTER);
     const response = await fetchData(URL_REGISTER);
     //console.log(response);
     dados.value = response;
@@ -70,10 +70,10 @@ function formatar_tipo(tipo){
             <div class="col-12 col-md-6 col-lg text-center my-1" v-for="(item,index) of dados">
                 <div class="border rounded py-1" v-if="index < 3">
                     <div class="icontainer" style="object-fit: contain;">
-                      <img :src="item.image" alt="" style="width: 400px;  max-width: 100%;">
+                      <img :src="item.image" alt="Fotografia obtida do dispositivo" style="width: 400px;  max-width: 100%;">
                     </div>
                     <p class="my-0 py-0" style="font-size: medium;"><span class="negrito">Classe: </span> {{ formatar_tipo(item.type) }}</p>
-                    <p class="my-0 py-0" style="font-size: small;"><span class="negrito">Data:</span> {{ formatar_data(item.occurenceDate) }}</p>
+                    <p class="my-0 py-0" style="font-size: small;"><span class="negrito">Data:</span> {{ formatar_data(item.occurrenceDate) }}</p>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg text-center my-1 d-flex flex-column justify-content-center align-items-center">
