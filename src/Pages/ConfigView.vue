@@ -38,7 +38,7 @@ const mockit = () => {
         <section class="row">
                 <article  class="col-12 border-1 rounded m-1 p-1 flex justify-evenly items-center">
                         Projeto desenvolvido como parte da disciplina PISH em 2024.<br>
-                        Grupo: Cristian<br>
+                        Grupo:<br> Cristian<br>
                         Dayane<br>
                         Gabriel B<br>
                         Guilherme<br>
