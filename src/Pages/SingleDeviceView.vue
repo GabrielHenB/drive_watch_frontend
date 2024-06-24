@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import * as CONSTS from '@/config.js';
 import {Fetcher} from '@/api.js';
 import Message from '@/Components/Message.vue';
+import MediaComponent from '@/Components/MediaComponent.vue';
 
 const route = useRoute();
 const hasMsg = ref(false);
@@ -129,7 +130,7 @@ const close = () => {hasMsg.value = false; msg.value = '';}
         <section class="col-md-9 col-12">
             <div v-if="device_data.registers.length > 0" class="d-flex justify-content-center align-items-center gap-1 registercontainer">
                 <div v-for="(item,index) of device_data.registers" :id="'dispositivo_'+index" class="mx-0 my-1 p-1 smallcard">
-                    <img :src="item.image === 'link da imagem' ? 'https://picsum.photos/200/300' : item.image" alt="Imagem capturada pelo dispositivo" />
+                    <MediaComponent v-bind:source="item.image" :is64="true" alt="Captura Obtida do Dispositivo"></MediaComponent>
                     <p class="text-center">{{ formatar_tipo(item.type) }}</p>
                     <p class="text-center">{{ formatar_data(item.occurrenceDate) }}</p>
                 </div>

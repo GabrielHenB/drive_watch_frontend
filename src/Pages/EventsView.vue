@@ -4,6 +4,7 @@ import { URL_REGISTER, URL_DEVICE } from '@/config.js';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import Message from '@/Components/Message.vue';
+import MediaComponent from '@/Components/MediaComponent.vue';
 import LoadingItem from '@/Components/LoadingItem.vue';
 import AdvancedSearchComponent from '@/Components/AdvancedSearchComponent.vue';
 
@@ -22,7 +23,7 @@ onMounted(async () => {
     //const res = await fetchData(URL_REGISTER);
     const res = await fetcher.useFetch(URL_REGISTER);
     console.log(res);
-    dados.value = {...res};
+    dados.value = [...res];
   } catch (error) {
     console.error('Error fetching data:', error);
     resposta.value = "Erro: " + error.message;
@@ -100,11 +101,12 @@ function handleResult(data){
     </div>
 
     <section class="contain container-fluid">
-      <div class="row">
+      <div v-if="dados.length > 0" class="row">
         <article v-for="(item,index) of dados"  class="d-flex justify-content-center gap-2 my-2 col-12 col-md-6 col-lg-4 mx-auto px-2">
             <div class="modified-flex">
                 <div class="foto">
-                  <img :src="item.image === 'link da imagem' ? '#' : '##'" alt="Foto">
+                  <!--<img :src="item.image === 'link da imagem' ? '#' : '##'" alt="Foto">-->
+                  <MediaComponent :source="item.image" :is64="true" alt="Captura Obtida do Dispositivo"></MediaComponent>
                 </div>
                 <div class="fs-4">
                   <h2 class="fs-5 display-1"><label :for="'in_'+index"><span class="negrito">Classe: &#8194;</span></label>{{ formatar_tipo(item.type) }}</h2>
