@@ -136,4 +136,12 @@ function handleUpdateForm(item){
   background-color: inherit;
   color: var(--cor-universo-claro);
 }
+@media (max-width: 768px) { 
+    .floatingButton{
+      bottom: 110px;
+    }
+    .device-container:hover{
+        transform: scale(1);
+    }
+}
 </style>

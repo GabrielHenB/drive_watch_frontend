@@ -49,7 +49,7 @@ i:hover{
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 20px;
-    padding-bottom: 100px; /* to stop free-tinyhost thingy from hiding the footer */
+    padding-bottom: 40px; /* to stop free-tinyhost thingy from hiding the footer */
 }
 .smallspace{
     display: none;
@@ -61,7 +61,7 @@ i:hover{
     }
     .smallspace{
         display: block;
-        margin: 100px;
+        margin: 40px;
     }
     .nav-item-text{
     font-size: 0.7rem;
