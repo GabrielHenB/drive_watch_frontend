@@ -30,7 +30,8 @@
     const media = computed(() => {
         const prepend = 'data:image/png;base64,';
         if(props.source.length <= 20){
-            return FRONTEND_BASE + 'driver.svg';
+            //return FRONTEND_BASE + 'driver.svg';
+            return '/driver.svg';
         }
         else {
             return prepend + props.source;

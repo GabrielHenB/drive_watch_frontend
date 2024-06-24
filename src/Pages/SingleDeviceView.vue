@@ -133,7 +133,9 @@ const close = () => {hasMsg.value = false; msg.value = '';}
         <section class="col-md-9 col-12">
             <div v-if="device_data.registers.length > 0" class="d-flex justify-content-center align-items-center gap-1 registercontainer">
                 <div v-for="(item,index) of device_data.registers" :id="'dispositivo_'+index" class="mx-0 my-1 p-1 smallcard">
-                    <MediaComponent v-bind:source="item.image" :is64="true" alt="Captura Obtida do Dispositivo"></MediaComponent>
+                    <div class="d-flex justify-content-around align-items-center">
+                        <MediaComponent v-bind:source="item.image" :is64="true" alt="Captura Obtida do Dispositivo"></MediaComponent>
+                    </div>
                     <p class="text-center">{{ formatar_tipo(item.type) }}</p>
                     <p class="text-center">{{ formatar_data(item.occurrenceDate) }}</p>
                 </div>
@@ -163,7 +165,8 @@ const close = () => {hasMsg.value = false; msg.value = '';}
 }
 .smallcard img{
     max-width: 100%;
-    width: 200px;
-    height: 100px;
+    width: 190px;
+    height: 140px;
+    border-radius: 6px;
 }
 </style>
