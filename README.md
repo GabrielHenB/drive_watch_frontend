@@ -6,6 +6,8 @@ Utiliza Vue.js e Bootstrap 5.
 
 Para rodar use a dist de produção (Em Releases >) ou a de desenvolvimento com 'npm run dev' seguindo as instruções abaixo (requer Node e npm).
 
+<a href='https://github.com/GabrielHenB/drive_watch_frontend'>Repositório Aqui</a>
+
 # How to Build
 
 Requer: Node JS, NPM.
