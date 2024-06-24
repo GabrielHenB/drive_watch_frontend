@@ -1,10 +1,11 @@
 <script setup>
 import { Fetcher } from '@/api.js';
-import { URL_REGISTER } from '@/config.js';
+import { URL_REGISTER, URL_DEVICE } from '@/config.js';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import Message from '@/Components/Message.vue';
 import LoadingItem from '@/Components/LoadingItem.vue';
+import AdvancedSearchComponent from '@/Components/AdvancedSearchComponent.vue';
 
 const dados = ref([]); //REATIVO
 const resposta = ref("");
@@ -20,8 +21,8 @@ onMounted(async () => {
     //console.log("DEBUG: Realizando fetch de REGISTER em " + URL_REGISTER);
     //const res = await fetchData(URL_REGISTER);
     const res = await fetcher.useFetch(URL_REGISTER);
-    //console.log(res);
-    dados.value = res;
+    console.log(res);
+    dados.value = {...res};
   } catch (error) {
     console.error('Error fetching data:', error);
     resposta.value = "Erro: " + error.message;
@@ -72,6 +73,10 @@ function formatar_tipo(tipo){
     }
 }
 
+function handleResult(data){
+  dados.value = data;
+}
+
 </script>
 
 <template>
@@ -79,6 +84,10 @@ function formatar_tipo(tipo){
     <Message v-if="mostrarErro" @close="closeError" class="warning">
       Ocorreu um erro na requisição. <br> <span class="text-danger">{{ resposta}}</span>
     </Message>
+
+    <template v-if="dados.length > 0">
+      <AdvancedSearchComponent :data="dados" @result="handleResult"></AdvancedSearchComponent>
+    </template>
     
     <div v-if="dados.length === 0" class="text-center my-2 py-2">
       <div v-if="loading">
@@ -95,7 +104,7 @@ function formatar_tipo(tipo){
         <article v-for="(item,index) of dados"  class="d-flex justify-content-center gap-2 my-2 col-12 col-md-6 col-lg-4 mx-auto px-2">
             <div class="modified-flex">
                 <div class="foto">
-                  <img :src="item.image" alt="Foto">
+                  <img :src="item.image === 'link da imagem' ? '#' : '##'" alt="Foto">
                 </div>
                 <div class="fs-4">
                   <h2 class="fs-5 display-1"><label :for="'in_'+index"><span class="negrito">Classe: &#8194;</span></label>{{ formatar_tipo(item.type) }}</h2>

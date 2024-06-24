@@ -77,6 +77,7 @@ const onSubmit = async () => {
     resetMessages();
     formData.warning = '';
     formData.isLoading = true;
+    formData.dados = []; // Limpa lixo de pesquisas anteriores
 
     // Bloco try-catch da validacao e requisicao
     try{
